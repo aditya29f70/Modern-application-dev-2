@@ -52,3 +52,25 @@ open the devtool --> shortcut -> ctrl + shift+ i
 or manullay go to selting on browser -> more tools -> dev tool
 
 note: each line of code terminate with help of -> ';'
+
+## variable declaration -> (let, const) more similar, var order way to define variable
+
+let first talk about var , in the basis of (scope, mutlability)
+
+var x=10; (quest where is fn scope -> funcation scoped(if you declare it inside the fn you can't use it outside the fn (gloablly)))
+
+- and also mutable (like var v=5; then i can change it's value v= 10)
+
+note ; gloabally scope means if you declare it inside or ouside the fn it will be not give any not same variable (not give error)
+
+all the declarer variable are gloable if those are declare outside the fn
+
+var y=20; <-- global
+let y=2 <-- ,,
+const y=4 <--,,
+
+## now see how 'let' and 'const' treat as scope
+
+--> comes under similar things
+--> blocked scoped
+--> let -> mutalble; const -> inmuatable
