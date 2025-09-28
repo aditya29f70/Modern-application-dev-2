@@ -74,3 +74,50 @@ const y=4 <--,,
 --> comes under similar things
 --> blocked scoped
 --> let -> mutalble; const -> inmuatable
+
+
+note; console.clear of clear all the things
+
+# we are gonna see what is block '{}' is ; 
+but if you declare a variable through var inside and out side the block will be running both console log
+
+
+* if any variable is block scoped it is also functional scope
+
+
+* finally; let and const are block scoped or do care about block, but var does't
+
+* so don't use var in block (due to it block scoped)
+
+##### coming up the more import question that get asked in the interview
+
+first i have login the variable which i haven't initilise 
+second i declare the variable
+third console.log
+
+console.log(v_var)
+var v_var= 'himesh';
+console.log(v_var)
+
+-->we get undefined response -> this is the downside of using 'var'
+
+--> specially what var is here;intilises the value of undefine even before it has been given some value -> so first one value is undefine and second one has 20
+
+
+## now let know how this hosting happens
+
+-> question comes like -> what is 'hosting' -> moving the variable declarasion  at top of the scope
+
+## js is interpreted(line by line) or jit (just in time compliation)
+
+let we define
+var a;
+a=10;
+var b= 20;
+function abc(){
+  var c= 30;
+  var d= 40;
+}
+
+
+--> what happens here we have memory allocation phase (each variable or fn which have defined will be 'allocated' at actual memory note;(it will only allocating varibale not assign(come in execution phase))); -> execution phase
