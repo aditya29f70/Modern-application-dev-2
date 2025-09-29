@@ -1,0 +1,44 @@
+## week 2
+this week we will try to understand ''Object'' and some of the things which are related to this
+like how aero fn entract with that or normal fn entract with obj
+
+
+?how should your approch to learn a new programming language
+--> first you should go to the sytax of the language
+--> declaration -> def fns --> let/const/var (have been seen in week 1)
+--> data-types
+--> control-flow
+--> looping (for, while, for in(like python) ,for of , do while)
+--> collections(how do group thing so we can access them easily) --> array, obj {}
+--> methods(sign .method_name) of certain data type/ objects (how to we push certain things in the array), push, pull
+
+--> diff concepts / wierd concepts (w.r.t other language)
+
+note; console is a fn and we are using log of it's a fn for showing something inside it
+
+
+
+## now come to datatypes (use '''typeof''' operator)
+1. primitives (str, number(in js int, float everythings under number, NaN(not a number)), booleens, bigint, symbol), null(but when you check it's type it will give you obj but in js it is boug), undefined
+2. objects (Arrays, functions, {}, ...)
+
+## control flow (if, elseif <--only diff w.r.t elif, else)
+
+## loops
+## collections (histmaps, weekmaps, strongmaps, arrays[], {}obj <-- today we will see) 
+
+## start coding
+
+-> there are two way to run you js code 
+--> through on browser runtime(these window, document fn are browser specific fn these all part of runtime not js engine bz js engin (v8 most famus) present in both browser as well as node.js)
+--> node.js runtime
+
+
+for node.js runtime you have to write --> node file_name.js
+
+
+
+
+  
+
+
