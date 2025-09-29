@@ -36,7 +36,12 @@ note; console is a fn and we are using log of it's a fn for showing something in
 
 for node.js runtime you have to write --> node file_name.js
 
+note; anything which is written inside the script tag will not show in the console log if you have give the 'src'
 
+
+;;; now try to run it in node.js env 
+--> open terminal
+--> now for want the outcome js file use command --> node js_file_name.js 
 
 
   
