@@ -132,3 +132,11 @@ what is ''hasting'' -> initialising the var declaration variable on top of it's 
 - so all the variable are gotten hosted in there place like let and const are hosted in TDZ and var is hosted in fn scope and fn is hosted in gloabally memory allocation (diff let and const are not accessible)
 
 ## now run actual js code in index.html, script tag
+
+'what is ''this'''--> i am global execution context (GEC) in there this is whole obj which running the fn ; what happens in js is all the code run inside the execution context and this execution context it's self a obj and everything is happening inside this obj and what obj this holding is called 'this'
+
+now i did --> console.log(this) <<-- here this is GlobalThis; and after that you will in browser devtool -> Window (what you infer from that ) it is a main context which we are running , (so what ever we are running are in this window context ) and this running thing is window in case of browser
+
+- now when we run a fn new execution context is created with new 'this' , and this obj which running the fn became this 'this'
+
+- note; what ever left of the fn became 'this' for that fn
