@@ -44,6 +44,7 @@ note; anything which is written inside the script tag will not show in the conso
 --> now for want the outcome js file use command --> node js_file_name.js 
 
 
+
   
 
 

@@ -60,4 +60,93 @@ let obj= {
 
 
 
+
 // obj property vs variable
+// we can have some name of property and variable 
+// the diff come , how they access there values (obj.property, for varible direct call variable name)
+
+// when ever you run js--> global execution context will be created automatically
+// 'is called "window"' --> document also there --> excusivaly for the browser
+// and we can also create a property as global proberty using window--> window.a= 20 like
+// that is diff from node.js runtime ,node.js does't have window
+
+
+// let a= 10; //global variable
+
+// window.a= 20; // window obj(global obj ,that why you can also use window or ''''globalThis'''') property
+
+// console.log(a);
+// console.log(window.a);
+// console.log(globalThis.a);
+// // also you this bz currently running obj is global exicution context or window obj
+// // now this== globalThis
+
+// console.log(this.a);
+
+// since window is browser global obj not run in node.js, but 
+// note; globalThis is global obj for both browser as well as node.js
+
+// // .#######now talk about some case of 'var' varible
+
+var c= 10 ; //creates variable and property in browser mean 
+// if you do clg(c) or clg(window.c) both will give answer same
+// let see (remember this is not happend in node.js)  ; note -> this things are happend only global space
+
+// console.log(c);
+// console.log(window.c);
+
+// // if i change though window
+// window.c= 20;
+
+// console.log(c);
+
+// const s= `this is value c ${c}`;
+// console.log(s);
+
+// // or
+// let h= 100;
+
+// const q= 'this is value h' + h
+// console.log(q);
+
+
+
+// `` is called vactics -->are  used for string templating; $ when you rendering something
+
+
+// ############### now let discuss about some arrow fn 
+// let start with fn -> there is two ways 
+// 1. fn expression
+// --> are expression fn that are stored in variable 
+// eg bz note; a= function(){} <-- this is expression
+// also called  anonamus fn
+
+let a= function(){}
+
+//  called it like --> a(); lly in both
+a();
+
+
+// 2. fn declaration (normal declaration of fn)
+
+function b(){
+
+}
+
+b();
+
+
+// diff come in hosting
+
+
+
+// >>>>>>>>>>>> time; 1:56:31
+
+
+
+
+
+
+
+
+
