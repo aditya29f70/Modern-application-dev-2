@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  
+  <style>
+    .green{
+      background-color: rgb(153, 197, 86);
+    }
+    .purple{
+      background-color:rgb(169, 47, 169)
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- static data -->
+     <h1>Vue App Heading</h1>
+    <!-- dynamic data -->
+    <!-- this is called 'one way data biding' , means vue-> html we are rendering but have done ; html -> vue.js -->
+     <h2 v-bind:class='class_green'>{{food}}, {{class_green}}</h2>
+     <!-- v-bind is called -> vue directive -->
+      <!-- v-bind:<attribute_name>='<expression(bz we can calcute something over there)/data>' -->
+    <h2 v-bind:class="(1>2)? 'green': 'purple'">😍</h2>
+    <!-- you also can write arrow fn -->
+     <!-- short hand to write v-bind is -> just use only ':' -->
+    <h2 :class="true? 'purple': 'green'">👍</h2>
+    <!-- so vue is allowing us programmatical features(like you can use js) in html page itself -->
+
+    <h2 v-text="food"></h2>
+
+  <input v-model="input_data" />
+  <h2 v-text="input_data"></h2>
+
+  </div>
+
+
+
+
+
+
+  <div id="app2">
+    {{food}}
+  </div>
+
+  <script>
+    const vueApp= new Vue({ //called options object
+      el: "#app",
+      data:{
+        food: '😒',
+        class_green: 'green',
+        input_data:'Intial value',
+      },
+    });
+
+    new Vue({
+      el:'#app2',
+      data:{
+        food:'😘'
+      },
+    })
+  
+  </script>
+  <script src="4.js"></script>
+</body>
+</html>
