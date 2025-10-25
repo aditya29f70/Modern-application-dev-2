@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  
+  <style>
+    .green{
+      background-color: rgb(153, 197, 86);
+    }
+    .purple{
+      background-color:rgb(169, 47, 169)
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- static data -->
+     <h1>Vue App Heading</h1>
+    <!-- dynamic data -->
+    <!-- this is called 'one way data biding' , means vue-> html we are rendering but have done ; html -> vue.js -->
+     <h2 v-bind:class='class_green'>{{food}}, {{class_green}}</h2>
+     <!-- v-bind is called -> vue directive -->
+      <!-- v-bind:<attribute_name>='<expression(bz we can calcute something over there)/data>' -->
+    <h2 v-bind:class="(1>2)? 'green': 'purple'">😍</h2>
+    <!-- you also can write arrow fn -->
+     <!-- short hand to write v-bind is -> just use only ':' -->
+    <h2 :class="true? 'purple': 'green'">👍</h2>
+    <!-- so vue is allowing us programmatical features(like you can use js) in html page itself -->
+
+    <h2 v-text="food"></h2>
+  
+    <h2 v-text="input_data"></h2>
+    <input v-model="input_data" />
+
+    <h2 v-for="(face, index) in faces" v-bind:key="index">{{face}}, {{index}}</h2>
+
+    <h2 v-if="a>b">'😁'
+      <div>{{faces}}</div>
+    </h2>
+
+    <h2 v-else>{{food}}</h2>
+
+    <h2 v-show="true">
+      <div>{{food}}</div>
+    </h2>
+    <!-- only diff bw v-if and v-show is if v-if not stisfied then it's code will be not showing on response page of this web page; but in v-show every condtion respons always will be shown (it used display:none where it want something it has not show) -->
+
+
+
+    <h2>{{count}}</h2>
+    <input v-model.number="user_input" type="number">
+    <button v-on:click="increment(user_input)">Click To Print!</button>
+    <!-- short hand of v-on is -> @ -->
+    <h1>{{lenFace}}</h1>
+
+    <button @click="incrByFour()">By four</button><br>
+
+    <input v-model="user_input_face" type="text">
+    <button @click="addFace(user_input_face)"></button>
+  </div>
+
+
+
+
+  <div id="app2">
+    {{food}}
+  </div>
+
+  <script>
+    const vueApp= new Vue({ //called options object
+      el: "#app",
+      data:{
+        food: '😒',
+        class_green: 'green',
+        input_data:'Intial value',
+        faces: ['😊', '😂','😒', '😁'],
+        show :true,
+        a:1,
+        b:3,
+        count:0,
+        user_input:0,
+      },
+      methods:{
+        // one way of writting this  // these called methods bz they are inside object methods
+        justPrint: function(){
+          console.log('hi first fn!!')
+        },
+        // another way to write this (like short hand to write fn)
+        anotherJustPrint(){
+          console.log('hi second fn!!')
+        },
+        // now this data 'count' can be refer by 'this' other wise we can't directly use it;;note this 'this ' refer this 'data' object inside mouting vue fn app
+
+        increment(x){
+          this.count+= x;
+        },
+        incrByFour(){
+          // now want to use increment fn in it 
+          this.increment(4)
+        },
+        addFace(face){
+          this.faces.push(face)
+        }
+        },
+
+        // computed properties, these are again methods but not exactly ;; it's depend on 'data' property and return some values
+        computed: {
+          lenFace(){
+            return this.faces.length;
+          }
+          // like it used; eg you have first name and last name so you can make complete name
+          // now after making such property you can use it as data property
+        }
+      });
+
+    new Vue({
+      el:'#app2',
+      data:{
+        food:'😘'
+      },
+    })
+  
+  </script>
+  <script src="4.js"></script>
+</body>
+</html>
