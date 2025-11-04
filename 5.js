@@ -123,22 +123,22 @@
 
 
 
-const prom = new Promise(
-  (a, b)=> {
-    // we call a when promise is resolved
-    // so what ever a or b you give it's parameter it's mean it is happend
-    // a('successfully get resolved!!')
+// const prom = new Promise(
+//   (a, b)=> {
+//     // we call a when promise is resolved
+//     // so what ever a or b you give it's parameter it's mean it is happend
+//     // a('successfully get resolved!!')
 
-// now how to show pending thing -> you settimeout bw this settimeout delay time it will be showing the pending thing
-    setTimeout(()=>{ a({name:'aditya', age:25}) , 1000})
+// // now how to show pending thing -> you settimeout bw this settimeout delay time it will be showing the pending thing
+//     setTimeout(()=>{ a({name:'aditya', age:25}) , 1000}) // note this is return value of resolved '' this a(this_one)""""
 
 
-    // we call b when promise is rejected
-    // b()
-  }
-)
+//     // we call b when promise is rejected
+//     // b()
+//   }
+// )
 
-console.log(prom)  // it is sync so it will immedially show pending
+// console.log(prom)  // it is sync so it will immedially show pending
 // and in the action thing 'then' part ' it will show rejected later on
 
 // this meaning that after the promise get rejected or resolved do this
@@ -147,14 +147,14 @@ console.log(prom)  // it is sync so it will immedially show pending
 
 // now for more specific way to do thing (which specifie what we should do when promise get reject and resolved) -> so for this we ''''.catch'''''
 
-prom.then((data) => { console.log(`it was resolved and res(response is ) ${data.name} and it's age is ${data.age}`); return new Promise((a, b)=> b())}).catch(()=> {console.log('it was rejected')})  // promise is async(by nautre) also always run after sync
-    .then(()=>{console.log('second then')}).catch(()=>{console.log('second catch')})
-    .then(()=>{console.log('third then'); throw new Error('This new Error')})
-    .finally(()=> {console.log('I will be executed no matter it is executed or rejected')} )
-    .catch((e)=>{console.log(`Third error catch and ${e} `)})
+// prom.then((data) => { console.log(`it was resolved and res(response is ) ${data.name} and it's age is ${data.age}`); return new Promise((a, b)=> b())}).catch(()=> {console.log('it was rejected')})  // promise is async(by nautre) also always run after sync
+//     .then(()=>{console.log('second then')}).catch(()=>{console.log('second catch')})
+//     .then(()=>{console.log('third then'); throw new Error('This new Error')})
+//     .finally(()=> {console.log('I will be executed no matter it is executed or rejected')} )
+//     .catch((e)=>{console.log(`Third error catch and ${e} `)})
 
 
-console.log(prom) // since the sync things run first so it will also showing pending
+// console.log(prom) // since the sync things run first so it will also showing pending
 
 // note; we can also have another then and catch; have to chain it normally
 // thing it is as when ever there is resolved condition then all the 'then' things will work as fn work async
@@ -183,6 +183,68 @@ console.log(prom) // since the sync things run first so it will also showing pen
 // and also aften we sent data when it is executed like in promise 
 // Promise((a, b)=> {a({name:'adiya'})})
 // how to catch -> lly as error -> .then(data){}
+
+// finally doesn't take any parameter ; if you give any parameter it will alway be undefine ''''''' this is only for finally'''''''''
+
+
+
+// const prom= new Promise(
+//   (res, rej)=> {
+//     function abc(a){
+//       if (a>20){ res(' It is resolved')} else { rej('It is not resolved')}
+//     }
+//     abc(22)
+//   }
+// )
+
+// prom.then((x)=> 20) // it is returning 20
+//     .catch(()=> {console.log('catch'); return 10;})
+//     .finally((x)=> {console.log(`new finally ${x} `)})
+//     .then((x)=> {console.log('2nd then',x); return 30} )
+//     .finally((x)=> {console.log(x)})
+//     .then((x)=> {console.log('3rd then', x)})
+//     .then(()=> console.log('see_here_it_is_return_clg_but_clg_for_printing_things_so_it_will_return_undefined'))
+//     .catch((e)=>{e})
+//     .then((x)=>{console.log('see_outcome',x)})
+
+
+
+// ************ instead of using .then, .catch ; we can also use --> 'async' concept is same 
+
+const prom= new Promise(
+  (res, rej)=> {
+    function abc(x){
+      if (x>20){ res('It is resolved')} else {rej('It is rejected')}
+    }
+    abc(20)
+  }
+)
+
+
+
+// await // means wait for promise to resolved and give me the result
+// you can't you it anywhere you have to create a fn for using it
+// anywhere where you using this await keyword you have to define this ''async'' fn
+// so it will awailt for prom that it will be responsed or rejected;
+// i wait for prom , when it will resolved it will give the data
+// if it get rejected it will directly throw error
+
+async function get_some_data(){
+  // if rejected it will throw error
+  try{
+  const data= await prom;
+  console.log(data);
+  } catch(e){
+    console.log(e)
+  }
+}
+
+get_some_data()
+
+// so this is lly to do 
+// prom.then((data)=>{console.log(data)}).catch((e)=> console.log(e))
+
+
 
 
 
