@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <h2>Users info Table</h2>
+    <table v-if="users"> <!-- mean i don't want error like users will be empty-->
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Website</th>
+          <th>Check</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users">
+          <td>{{user.name}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.website}}</td>
+          <td><button @click="method2(user.id)">Click</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 v-else>Users not found!!</h2>
+    <table v-if="user">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Website</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{user.name}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.website}}</td>
+          <td><button @click="method3">Close</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

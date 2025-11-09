@@ -1,0 +1,4 @@
+https://jsonplaceholder.typicode.com/users
+https://jsonplaceholder.typicode.com/users/<user_id>
+https://jsonplaceholder.typicode.com/posts
+https://mock.httpstatus.io/<status_code>
