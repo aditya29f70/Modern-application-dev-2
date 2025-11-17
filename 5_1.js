@@ -63,3 +63,10 @@
 
 // 1:10:38
 // https://www.youtube.com/watch?v=C4E5h-742J0&list=PLZVf4uJM87NpbAzc-AB2cubaZjO6wDv_6&index=9&t=522s
+
+
+
+// now come to 3. senorio 
+// fetch with ```data sent as request header (e.g Token)```` usally use for sent content-type ro token
+// and 4. Fetch with `` data sent in the request body (POST/put)```
+
