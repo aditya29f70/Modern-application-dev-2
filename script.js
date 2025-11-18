@@ -86,4 +86,10 @@ const app= new Vue({ //options or property
 // CORS violation (when server blocks cross-origin requests)
 // request timeout (only if implemented manually or via abort (controller))
 
-// 1:38
+// note: http error are always resolved ;;bz fetch will alway try to give you postive response or will always 
+// try to resolve you res that every every error 4xx or 5xx http error will resolve it 
+// bz these are also response which can be understandable so these will be resoolved
+
+// but there any fundatmental error like you break url or remove domain than error go under ''catch''
+
+// note: ::: ''ok'' is a attribute of response and it will be True only which reponse come with 200
