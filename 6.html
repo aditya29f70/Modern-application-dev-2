@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>week6</title>
+    <title>week6 vue router app!!</title>
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
 </head>
 <body>
-    <script src="6.js"></script>
+    <div id="app">
+        <!-- this below is used for lly work as anchor tag like we only need to go that route /home and /profile this will dynamicaly render so for that vue has there own thing -->
+        <router-link to="/home">Home</router-link>
+        <router-link to="/profile/aditya">Profile</router-link>
+        <!-- how knowing that where those router which we have made to load we use this build in element -->
+        <router-view></router-view>
+        <button>Dashboard</button>
+        <button>Payment</button>
+    </div>
+    <!-- <script src="6.js"></script>  -->
+     <!-- bz now it will through an error bz now we are importing some componenet to 6.js so that 6.js become module not simple js-->
+     <script type="module" src="6.js"></script>
 </body>
 </html>
