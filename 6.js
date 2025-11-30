@@ -8,6 +8,7 @@ import Home from './components/Home.js'
 import Profile from './components/Profile.js'
 import Dashboard from './components/Dashboard.js'
 import Payment from './components/Payment.js'
+import noFound from './components/notFound.js'
 
 // so now home.js component represent by Home and profile.js is now represent by Profile
 
@@ -17,17 +18,24 @@ const routes=[
   {path:'/home', component:Home},
   {
     path:'/profile/:user',
+    name:'home',
     component:Profile,
     children:[
       {
         path:'dashboad',
+        name:'dash',
         component:Dashboard 
       },
       {
         path:'payment',
+        name: 'pay',
         component: Payment
       }
     ]
+  },
+  {
+    path:'*',
+    component: noFound
   }
 ]
 
@@ -46,16 +54,37 @@ const router= new VueRouter({ //see it's also take option object
 const app= new Vue({ //that is called option obj or property
   router: router,
   
-  // data: {
-  // },
+  data: {
+    user: 'user123'
+  },
   // mounted:{
 
   // },
 
-  // methods: {
+  methods: {
+    // dash: function(){
+    //     this.$router.push(`/profile/${this.user}/dashboad`)
+    // },
+    dash: function(){
+        this.$router.push({name:'dash', params:{user:this.user}})
+    },
 
-  // }
- 
+    // pay: function(){
+    //     this.$router.push(`/profile/${this.user}/payment`)
+    // }
+    
+    pay: function(){
+        this.$router.push({name:'pay', params: {user:this.user}})
+    },
+
+    // router remember which page you have been through
+    goBack: function(){
+      this.$router.go(-1)
+    },
+    goForward:function(){
+      this.$router.go(+1)
+    }
+  }
 }).$mount('#app') // or just specify el:'#app', as it's property tell it that it has to mount in it's connected js file element id='app'
 
 
@@ -98,9 +127,14 @@ const app= new Vue({ //that is called option obj or property
 
 // so note $route -> give you access of current route
 // and $router -> help you to redirect other url
+// in order to access the existing route of application you have to use it like -> 
+// this.$router and for redirect we use 'push'
+// this js way to write end point 
+
+// we have better way to write this:
+// this were the named route come into the picture
 
 
-// 1.50
 
 
 

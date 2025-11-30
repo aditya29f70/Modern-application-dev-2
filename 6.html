@@ -14,8 +14,10 @@
         <router-link to="/profile/aditya">Profile</router-link>
         <!-- how knowing that where those router which we have made to load we use this build in element -->
         <router-view></router-view>
-        <button>Dashboard</button>
-        <button>Payment</button>
+        <button @click="dash">Dashboard</button>
+        <button @click="pay">Payment</button>
+        <button @click="goBack">Go back</button>
+        <button @click="goForward">Go Forward</button>
     </div>
     <!-- <script src="6.js"></script>  -->
      <!-- bz now it will through an error bz now we are importing some componenet to 6.js so that 6.js become module not simple js-->
