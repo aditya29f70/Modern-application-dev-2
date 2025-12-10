@@ -1,0 +1,144 @@
+## agenda for today is to know how diff type of servers works how backend async 
+# works does or how to celery system works 
+# how http request likely works
+# what are the terms and condition to connect these servers 
+
+##### servers, asyncronous backend jobs, celery 
+
+## so 1. servers
+👉 Simple Definition
+
+A server = a powerful computer that listens to requests and responds with data or services.
+
+👉 Examples of what servers do
+
+Web server → Shows websites (like Google, YouTube).
+
+Database server → Stores and manages data.
+
+Mail server → Sends and receives emails.
+
+File server → Stores files and allows access over a network.
+
+Game server → Lets people play online games together.
+
+👉 How it works (very simple)
+
+A client sends a request
+(e.g., your browser asks for a webpage)
+
+The server processes the request
+
+The server sends a response
+(e.g., the webpage loads)
+
+👉 Examples in daily life
+
+When you open Instagram, your phone connects to Instagram’s servers.
+
+When you watch Netflix, movies come from Netflix servers.
+
+When you search on Google, results come from Google servers.
+
+
+
+we have flask server see pic --1
+
+############## multiple server/micro service eg
+## what happens when server wants to communicate two things internally;;; like eg of micro service where servers are located diff computers and 
+when a request go any server it can interect with other server if needed see --> pic 2
+
+# after seeing that you can analys it will great an issue --> if we add any other server so after that 
+# we have to connect that server to each other server
+--> solution ==> '''centerise server''' --> message broker (like a intermediatly ) see pic-3
+
+
+###### now assume you ask a request to your server and your request is such like it need to preprocessing
+# so for that our server request other server for preprocessing which take 10min minimum to proseed with that 10 min re can only tell client to wait --> do we have something 
+# power so clint do not have to wait --> '''asyncronous server works''' so this 10 min work would be ''background process'' and when it is done then we direct sent this response data to clint 
+ so this background process will be asyncronous (job)
+
+# here ''long polling'' and ''fixed interval polling'' are important
+
+############ 
+what is meaning of polling in context of server (or server-client model)
+-> client sending a request to server and getting it's response is called polling 
+
+
+
+1. (fixed interval polling)--> mean in a fixed interval(eg 1s) we send a request to server 
+why we do like that -> to get some kind of real updated data back
+--> problem --> lot of call will be happend or use of server will increase and network user will also increase 
+
+2. (long polling) --> lly like that but here we don't have any fixed interval what 'long polling' does it sents the request to server 
+and the server hold the request untill the new update is not happend and also if for very long period you are not getting any response from server then it will 
+through error --> see pic 5
+
+
+##### learning about '''''celery''''
+so for that we will be using redis and celery for that background process (asyncronus, process)
+
+######################### ''''Redis'''' 
+--> in memory database or in-memory-key-value pair --> it kind of memory cache
+
+```
+✅ Memory Cache – Meaning
+
+A memory cache is a small, fast type of memory that stores frequently used data so a computer can access it quickly.
+
+It sits between the CPU and RAM.
+
+👉 Why cache is used?
+
+To speed up performance.
+
+Example:
+
+If the CPU needs data, it first checks the cache (very fast).
+
+If the data is not there, it goes to RAM (slower).
+
+If not in RAM, it may go to storage (even slower).
+
+👉 Types of cache
+
+L1 Cache – Fastest, very small
+
+L2 Cache – Bigger, slower
+
+L3 Cache – Even bigger, shared between cores
+
+👉 Daily Example
+
+When you open an app the second time, it loads faster because the data is in the cache.
+
+```
+
+--> server has lot of rams (100gb) -> so Redis is storing things inside RAM it's a key value pair inside ram 
+-> in application what it does -> it do lot of things -> it can be stored in ram (since ram so it is very fast) means fetching data from it will be very faster 
+(so it is very fast in compare to db storing but problem is server side ram has less memory )
+--> see pic6
+
+-> used --> cache, very fast database, ''message queue'' etc.
+
+## previusly we decussed about message broken now we have 
+############# message Queue ;; why we need this message query (remember background process)
+remember ''message broken'' (solves conversion way between servers (through making a centerise server ))
+so when a server send a request to another server so it's has to store some where in ''message broken'' so that other server can know which
+server it wants to sent request --> so it stores in '' message queue '' in message broken  
+
+bz you know that message broken is getting request from diff servers so there should be some structure memory like thing 
+
+
+################ now try to know what '''celery'' is 
+--> celery is an open source asyncronous task queue or job queue which is based on distributed message 
+passing --> it is a subset of this ''message queue or particular implimention of this 'message queue' 
+
+so in celey tasks will come and store in task queue (which is message broken) and in this celery env we also have '''workers'' which is basically our 
+cores/thread
+
+--> so each task assign to a workers and when it is done it goes another similar kind of structure called '''result backend''  
+
+
+############### now try to implement these thing through code 
+note;; celery does not work directly in window so for window you have to either use ''wsl'' 
