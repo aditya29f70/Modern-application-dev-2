@@ -142,3 +142,6 @@ cores/thread
 
 ############### now try to implement these thing through code 
 note;; celery does not work directly in window so for window you have to either use ''wsl'' 
+
+now to move to ubountu
+go to ubountu file drive -> aditya29f70 -> mad2_theroy
