@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch live stream</title>
+</head>
+<body>
+  <h3 id="chat_box">Chat box</h3>
+  <script>
+    const eventSrc= new EventSource("/stream") //it will contineously take the server response or it is subscribing to this /stream channel
+
+    eventSrc.onmessage= (event) => { // this event would be data
+      const data= event.data
+      const data_obj= JSON.parse(data)
+
+      const newMessage= document.createElement('h4')
+
+      newMessage.textContent= `${data_obj.name}: ${data_obj.message}`
+      // through appendChild we can add some more text in an html tag
+
+      const chatBox= document.getElementById("chat_box")
+
+      chatBox.appendChild(newMessage)
+
+    }
+
+
+
+  </script>
+</body>
+</html>
