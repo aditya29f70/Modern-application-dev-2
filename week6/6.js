@@ -4,11 +4,11 @@
 // so vue router is basically is extension in view frame work therefore it is not 
 // for vue2 we will be using vue router3
 
-import Home from '../components/Home.js'
-import Profile from '../components/Profile.js'
-import Dashboard from '../components/Dashboard.js'
-import Payment from '../components/Payment.js'
-import noFound from '../components/notFound.js'
+import Home from './components/Home.js'
+import Profile from './components/Profile.js'
+import Dashboard from './components/Dashboard.js'
+import Payment from './components/Payment.js'
+import noFound from './components/notFound.js'
 
 // so now home.js component represent by Home and profile.js is now represent by Profile
 
