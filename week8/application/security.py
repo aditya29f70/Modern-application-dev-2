@@ -13,6 +13,7 @@ jwt= JWTManager()
 @jwt.user_identity_loader
 def load(user):
     return user.username # this what identity gonna store to themself then use in below 
+# this is what identity we use of identify user role
 
 @jwt.user_lookup_loader
 def user_lookup(_jwt_header, jwt_data):
