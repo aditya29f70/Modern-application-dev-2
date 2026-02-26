@@ -70,10 +70,34 @@ for csv file download option or email sending are time taken things so we want t
 
 # will seee how to create new g-space (this is basically webhook)
 
-# so when every you backend try to communicate with another backend this may possible by using web-hook(you backend is trying to take features of another backend is called webhook) ;; and this web hook is provided by google chat api
+# so when every you backend try to communicate with another backend this may possible by using web-hook(you backend is trying to take features of another backend is called webhook (server to server communication)) ;; and this web hook is provided by google chat api
 
 ## so when every we want to communicate with another backend we have a python fn **requests** which can be used for it (relate as axios.post)
 
 ## so **requests.post(your_api, json={"text:text(your_message)})**
 
-1:19
+## now try to trigger these task
+
+- note;; when ever you create a task, these task will identified by celery, and there are celery workers who will perform these tasks
+
+- so we need to activate redis first , bz every things in celery depends on redis (see "ignore_results=False" and "tasks return")
+
+- create one more terminal for redis-server run -> `redis-server` if redis is already running you can stop by -> `sudo systemctl stop redis-server`
+
+- now we want another terminal and this terminal will be use run our workers `celery -A app.celery worker --loglevel=info`
+
+* think how it is working -> first has to know that we are running celery app and '-A' mean what celery app you want to run -> "app.celery" (this refer to that celery app which we created in app.py) -> and 'worker' means we are tring to invoke worker of the celery for do the tasks ;; and at the end we have to log everythings so for that we have 'loglevel-info'
+
+## now you have to trigger each task so import each task to our route file (note;; for import those tasks we use there fn name)
+
+## and import one more thing -> `celery.result import AsyncResult`
+
+- now you have build a normal route and intialize it as simple fn (it will work as normal python fn) but problem is that it will not run async , like if it take 5 min to get the response then the entire thread will get stopped for 5 min -> use the methods we called as -> `.delay()` -> now it will run async -> measn if it takes time then it will run at the background without disterbing any other routes or we can say our main thread will not gonna stop;; bz this is gonna work on diff thread
+
+[tasks]
+
+⚠️ No tasks are listed.
+
+That means:
+
+👉 Celery is not discovering your tasks.
