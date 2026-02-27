@@ -101,3 +101,36 @@ for csv file download option or email sending are time taken things so we want t
 That means:
 
 👉 Celery is not discovering your tasks.
+
+## now we are gonna use **send_from_directory** method , this come from flask , this is responsible for downloading the file;; so our backend task was making sure that it works asyncly and to make the csv and return the csv file name and one the result is ready we trigger this fn **send_from_diectory** which takes ('static'(that csv file directly name), that_csv_file_name)
+
+- so we have to import it from flask , import sent_from_directory (used mostly for downloading csv file);;; send_file also there but used for download other files
+
+## 2. now our second tasks is send email
+
+- for that we need to install **mailhog** go to this url `https://gist.github.com/dipenparmar12/4e6cd50d8d1303d5e914742f62659116`
+  You need Go 1.21 or newer (recommended: 1.22+)
+  - now open the interface of MailHog just go to the their 8025 port url ;now this is similar like you google mail interface
+  - here you will see all the mails
+
+* now let create a route which trigger it
+* for currently this email sending is happened by admin (like we have a trigger button and when admin click on it those will be sent to patients one-by-one but we don't want it to be triggered by someone we want a time period where it automatically get triggered) and all the emails have been sent at the same time but we don't want it like that we want it like it has to be sent periodically
+
+* so for that we have triggered by crontb (cron-tab) -> somethings called celery beat -> what it does , it triggers the tasks one-by-one in the periodic manner, and that period in which it has to be triggered will be defined by **crontb**
+
+* this **crontb** can be used to trigger a particular functionality at a particular period;; for more information you can visit -> crontab.guru
+
+* we have two things 1. on_after_config and 2. on_after_finilize so we use on_after_config when we haven't used the celery.Celery.autodiscover_tasks()
+
+* **How to run celery Beat** if you have set the crontab it time to run celery-beat;; lly like how we run the celery worker -> `celery -A app.celery beat --loglevel=info
+
+## it's completly working, now move to our third tasks
+
+- so you can create you g-space and use it
+- 1. create a g-space
+- 2. click that g-space heeder(where your g-space name is written)
+- 3. go to space setting > app and integrations > web-hooks > add web-hooks > copy the url > and paste where our backend was taking with another backend by using requests.post(url, request_body(json={}))
+
+- what is going to happen, the moment this action is gonna happen, it is gonna comming on the g-space
+- so when we want it to triggered , when my generate_msg is called by doctor
+- so you can call it with that api call where doctor have checked the appointment
