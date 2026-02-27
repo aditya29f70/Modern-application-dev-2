@@ -134,3 +134,5 @@ That means:
 - what is going to happen, the moment this action is gonna happen, it is gonna comming on the g-space
 - so when we want it to triggered , when my generate_msg is called by doctor
 - so you can call it with that api call where doctor have checked the appointment
+
+2:33
