@@ -135,4 +135,4 @@ That means:
 - so when we want it to triggered , when my generate_msg is called by doctor
 - so you can call it with that api call where doctor have checked the appointment
 
-2:33
+# if you are doing async await in frontend you don't need polling
