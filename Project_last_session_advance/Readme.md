@@ -136,3 +136,131 @@ That means:
 - so you can call it with that api call where doctor have checked the appointment
 
 # if you are doing async await in frontend you don't need polling
+
+async downloadDoctorCSV(task_id) {
+try {
+const res = await axios.get(
+`http://127.0.0.1:5000/api/celery/download_csv/${task_id}`,
+{
+responseType: "blob",
+headers: {
+Authorization: `Bearer ${this.userStore.token}`
+}
+}
+)
+
+    const url = window.URL.createObjectURL(new Blob([res.data]))
+    const link = document.createElement("a")
+
+    link.href = url
+    link.setAttribute("download", "doctors.csv")
+    document.body.appendChild(link)
+
+    link.click()
+    link.remove()
+
+} catch (e) {
+alert(`Something Went Wrong During Doctors CSV File Downloading\n${e}`)
+}
+}
+
+## This code is used to download a file (CSV) from an API using JavaScript.
+
+Normally the browser downloads files automatically, but when using axios, you must create the download manually.
+1️⃣ Tell axios the response is a file
+responseType: "blob"
+
+Blob = Binary Large Object
+
+It tells axios:
+
+“The response from the server is a file (binary data), not JSON.”
+
+Without this, axios may try to treat the CSV as text or JSON, which can break the file.
+
+3️⃣ Convert response into a downloadable URL
+const url = window.URL.createObjectURL(new Blob([res.data]))
+
+Steps happening here:
+
+res.data → contains binary CSV data
+
+new Blob([res.data]) → creates a file-like object
+
+URL.createObjectURL() → converts it into a temporary browser URL
+
+Example result:
+
+blob:http://localhost:5173/91c8f2b1-abc2-4a8e
+This URL points to the file stored in browser memory.
+
+4️⃣ Create a hidden download link
+const link = document.createElement("a")
+
+Creates this element in memory:
+
+<a></a>
+
+5️⃣ Set file URL
+link.href = url
+
+Now the link becomes:
+
+<a href="blob:http://localhost/..."></a>
+
+6️⃣ Set file name
+link.setAttribute("download", "doctors.csv")
+
+This tells the browser:
+
+When clicking the link → download file as doctors.csv
+
+Without this, the browser may open the file instead of downloading.
+
+Add link to the page
+document.body.appendChild(link)
+
+Now the link actually exists in the DOM.
+
+8️⃣ Trigger the download
+link.click()
+
+This simulates the user clicking the link.
+
+Browser starts downloading:
+
+doctors.csv
+
+9️⃣ Remove the link
+link.remove()
+
+Deletes the link from the page (cleanup).
+
+🔄 Full Flow
+API → axios → blob → create temporary URL → create link → click → download file
+
+Server
+│
+│ CSV file
+▼
+Axios (responseType: blob)
+│
+▼
+Blob Object
+│
+▼
+createObjectURL()
+│
+▼
+<a download="doctors.csv">
+│
+▼
+click()
+│
+▼
+Browser downloads file
+
+💡 Important:
+After download, it's good practice to free memory:
+
+URL.revokeObjectURL(url)
