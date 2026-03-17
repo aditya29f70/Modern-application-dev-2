@@ -137,6 +137,73 @@ That means:
 
 # if you are doing async await in frontend you don't need polling
 
+#########################################################################################
+"""
+When you call:
+-> result = csv_report.delay()
+
+Celery does NOT execute immediately.
+
+It:
+
+->Sends task to broker (Redis / RabbitMQ)
+
+->Returns immediately
+
+->Worker executes task in background
+
+So when you check status immediately:
+
+######################
+Celery is asynchronous.
+
+.delay() = “Do this later in background.”
+
+It is NOT:
+
+csv_report()
+
+which is synchronous.
+
+#####################
+Option 1 — (NOT Recommended) Wait For Result
+result = csv_report.delay()
+file_name = result.get(timeout=10) # wait until task finishes
+return {"file": file_name}
+
+Option 2 — Proper Way (Recommended)
+Step 1: Return Task ID
+
+@celery_bp.route("/export_csv")
+def export():
+result = csv_report.delay()
+return {
+"task_id": result.id,
+"status": result.status
+}
+
+    Step 2: Create status-check API
+
+from celery.result import AsyncResult
+
+@celery_bp.route("/task_status/<task_id>")
+def task_status(task_id):
+result = AsyncResult(task_id)
+
+    return {
+        "status": result.status,
+        "result": result.result if result.ready() else None
+    }
+
+Now flow is:
+->Frontend calls /export_csv
+->Gets task_id
+->Frontend polls /task_status/<task_id>
+->When status = SUCCESS
+->result.result contains your CSV filename
+"""
+
+##################################################################################################################
 async downloadDoctorCSV(task_id) {
 try {
 const res = await axios.get(
