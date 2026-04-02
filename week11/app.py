@@ -77,3 +77,13 @@ def delete_homepage_cache():
 app.run()
 
 
+
+# 🔴 @cache.cached
+
+# “Same URL → same response → cache it”
+
+# 🟢 @cache.memoize
+
+# “Same function input → same output → cache it”
+
+# https://chatgpt.com/share/69ce0561-ac14-83e8-a6a4-73bffe1a777a
